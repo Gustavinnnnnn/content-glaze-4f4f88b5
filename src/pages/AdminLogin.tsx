@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { ADMIN_SLUG } from "@/App";
+import { ADMIN_SLUG } from "@/lib/adminSlug";
 import { ShieldCheck, Loader2, Mail, Lock } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";

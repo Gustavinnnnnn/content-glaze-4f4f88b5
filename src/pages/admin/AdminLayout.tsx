@@ -6,7 +6,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
-import { ADMIN_SLUG } from "@/App";
+import { ADMIN_SLUG } from "@/lib/adminSlug";
 
 const BASE = `/${ADMIN_SLUG}`;
 const items: { to: string; label: string; icon: any; perm?: keyof AdminPermissions }[] = [

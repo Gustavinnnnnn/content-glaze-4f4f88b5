@@ -17,7 +17,7 @@ import { UpgradeDialog } from "./UpgradeDialog";
 import { useNavigate } from "react-router-dom";
 import { useUserHistory } from "@/hooks/useSiteData";
 import { resolveImage } from "@/lib/imageResolver";
-import { ADMIN_SLUG } from "@/App";
+import { ADMIN_SLUG } from "@/lib/adminSlug";
 
 interface MenuPanelProps {
   open: boolean;
