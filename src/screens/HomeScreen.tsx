@@ -1,10 +1,11 @@
-import { Bell, Crown, Search, BadgeCheck, Heart, Image as ImageIcon } from "lucide-react";
+import { Bell, Crown, Search, BadgeCheck, Heart, Image as ImageIcon, Lock } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNav } from "@/contexts/NavContext";
 import { useMemo, useState } from "react";
 import { useModels, useVideos, useSiteSettings } from "@/hooks/useSiteData";
 import { resolveImage } from "@/lib/imageResolver";
 import { Skeleton } from "@/components/ui/skeleton";
+import { VipHeroBanner } from "@/components/VipHeroBanner";
 
 export const HomeScreen = () => {
   const { displayName, vip } = useAuth();
@@ -65,14 +66,15 @@ export const HomeScreen = () => {
         </div>
       </header>
 
-      <div className="space-y-5 pb-4 pt-4">
+      <div className="space-y-4 pb-4 pt-2">
+        <VipHeroBanner />
+
         {/* Models grid — Privacy-style (no overlapping avatar bug) */}
         {filtered.length > 0 && (
           <section className="px-3">
             <div className="grid grid-cols-2 gap-2.5">
               {filtered.map((m, i) => {
                 const posts = videoCounts[m.id] ?? 0;
-                const price = Number(m.monthly_price ?? 0);
                 return (
                   <div
                     key={m.id}
@@ -124,7 +126,7 @@ export const HomeScreen = () => {
                         }}
                         className="mt-2 flex w-full items-center justify-center gap-1 rounded-full gradient-primary py-1.5 text-[11px] font-extrabold text-primary-foreground shadow-button transition-transform active:scale-[0.97]"
                       >
-                        Assinar · R$ {price.toFixed(2).replace(".", ",")}
+                        {vip.isVip ? "Ver perfil" : (<><Lock className="h-2.5 w-2.5" /> Desbloquear</>)}
                       </button>
                     </div>
                   </div>
