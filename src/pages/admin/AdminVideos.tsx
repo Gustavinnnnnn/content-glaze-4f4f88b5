@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { useAllVideos, useAllModels, useCategories, VideoRow, Placement } from "@/hooks/useSiteData";
+import { useAllVideos, useAllModels, VideoRow, Placement } from "@/hooks/useSiteData";
 import { Plus, Pencil, Trash2, X, Loader2, FileVideo } from "lucide-react";
 import { toast } from "sonner";
 import { FileUpload } from "@/components/admin/FileUpload";
@@ -76,7 +76,6 @@ const AdminVideos = () => {
 
 const VideoForm = ({ video, onClose }: { video: Partial<VideoRow>; onClose: () => void }) => {
   const { data: models = [] } = useAllModels();
-  const { data: categories = [] } = useCategories();
   const [form, setForm] = useState<any>(video);
   const [saving, setSaving] = useState(false);
   const qc = useQueryClient();
