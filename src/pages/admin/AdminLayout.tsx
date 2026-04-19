@@ -1,7 +1,7 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth, AdminPermissions } from "@/contexts/AuthContext";
 import {
-  LayoutDashboard, Film, Users, UserCog, ShieldCheck, ShoppingBag, Settings, ArrowLeft, LogOut, Crown, Menu, Send,
+  LayoutDashboard, Film, Users, UserCog, ShieldCheck, ShoppingBag, Settings, ArrowLeft, LogOut, Crown, Menu, Send, Receipt,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -16,6 +16,7 @@ const items: { to: string; label: string; icon: any; perm?: keyof AdminPermissio
   { to: `${BASE}/users`, label: "Usuários", icon: UserCog, perm: "can_manage_users" },
   { to: `${BASE}/admins`, label: "Admins", icon: ShieldCheck, perm: "can_manage_admins" },
   { to: `${BASE}/sales`, label: "Vendas", icon: ShoppingBag, perm: "can_view_sales" },
+  { to: `${BASE}/fees`, label: "Taxas", icon: Receipt, perm: "can_manage_settings" },
   { to: `${BASE}/telegram`, label: "Telegram", icon: Send, perm: "can_manage_settings" },
   { to: `${BASE}/settings`, label: "Config", icon: Settings, perm: "can_manage_settings" },
 ];
