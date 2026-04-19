@@ -27,6 +27,12 @@ type Cfg = {
   admin_chat_ids: any;
   mini_app_url: string | null;
   last_polled_at: string | null;
+  button_content_label: string | null;
+  button_content_path: string | null;
+  button_app_label: string | null;
+  button_app_path: string | null;
+  button_models_label: string | null;
+  button_models_path: string | null;
 };
 
 const DEFAULT_SITE_URL = typeof window !== "undefined" ? window.location.origin : "";
@@ -105,8 +111,14 @@ const AdminTelegram = () => {
       vip_channel_id: cfg.vip_channel_id,
       vip_channel_invite_link: cfg.vip_channel_invite_link,
       mini_app_url: cfg.mini_app_url,
+      button_content_label: cfg.button_content_label,
+      button_content_path: cfg.button_content_path,
+      button_app_label: cfg.button_app_label,
+      button_app_path: cfg.button_app_path,
+      button_models_label: cfg.button_models_label,
+      button_models_path: cfg.button_models_path,
     });
-    toast.success("Configurações salvas. Mande /start no bot pra ver os botões atualizados.");
+    toast.success("Salvo. Mande /start no bot pra ver os botões atualizados.");
   };
 
   const addAdmin = async () => {
