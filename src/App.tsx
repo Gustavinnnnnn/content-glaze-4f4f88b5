@@ -19,6 +19,7 @@ import AdminAdmins from "./pages/admin/AdminAdmins.tsx";
 import AdminSales from "./pages/admin/AdminSales.tsx";
 import AdminSettings from "./pages/admin/AdminSettings.tsx";
 import AdminTelegram from "./pages/admin/AdminTelegram.tsx";
+import AdminFees from "./pages/admin/AdminFees.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 30_000, refetchOnWindowFocus: false } },
@@ -63,6 +64,7 @@ const App = () => (
                 <Route path="sales" element={<RequireAdmin permission="can_view_sales"><AdminSales /></RequireAdmin>} />
                 <Route path="settings" element={<RequireAdmin permission="can_manage_settings"><AdminSettings /></RequireAdmin>} />
                 <Route path="telegram" element={<RequireAdmin permission="can_manage_settings"><AdminTelegram /></RequireAdmin>} />
+                <Route path="fees" element={<RequireAdmin permission="can_manage_settings"><AdminFees /></RequireAdmin>} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
