@@ -9,9 +9,7 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Auth from "./pages/Auth.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
-
-// 🔒 Slug secreto do painel admin — NÃO compartilhe. Para mudar, atualize aqui e em useAuth/MenuPanel.
-export const ADMIN_SLUG = "x7k9m2-painel-q4w8";
+import { ADMIN_SLUG } from "@/lib/adminSlug";
 import AdminLayout from "./pages/admin/AdminLayout.tsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
 import AdminVideos from "./pages/admin/AdminVideos.tsx";
