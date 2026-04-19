@@ -4,7 +4,7 @@ import { BottomNav } from "@/components/BottomNav";
 import { HomeScreen } from "@/screens/HomeScreen";
 import { ExploreScreen } from "@/screens/ExploreScreen";
 import { ShortsScreen } from "@/screens/ShortsScreen";
-import { ModelsScreen } from "@/screens/ModelsScreen";
+
 import { ModelProfileScreen } from "@/screens/ModelProfileScreen";
 import { VideoScreen } from "@/screens/VideoScreen";
 import { VipPromoModal } from "@/components/VipPromoModal";
@@ -26,7 +26,8 @@ const Index = () => {
         setVipOpen(true);
         return;
       }
-      const tabs: Tab[] = ["home", "explore", "shorts", "models"];
+      const tabs: Tab[] = ["home", "explore", "shorts"];
+      if (h === "models") { setTab("home"); return; }
       if (tabs.includes(h as Tab)) setTab(h as Tab);
     };
     apply();
@@ -46,7 +47,7 @@ const Index = () => {
         {view.type === "tab" && tab === "home" && <HomeScreen />}
         {view.type === "tab" && tab === "explore" && <ExploreScreen />}
         {view.type === "tab" && tab === "shorts" && <ShortsScreen />}
-        {view.type === "tab" && tab === "models" && <ModelsScreen />}
+        {view.type === "tab" && tab === "models" && <HomeScreen />}
       </main>
       {!hideNav && <BottomNav active={tab} onChange={setTab} />}
       <VipPromoModal />
