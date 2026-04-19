@@ -124,7 +124,8 @@ Deno.serve(async (req) => {
     }
 
     // ---------------- ADMIN ACTIONS ----------------
-    const { action, token: explicitToken, mini_app_url } = await req.json().catch(() => ({}));
+    const body = await req.json().catch(() => ({} as any));
+    const { action, token: explicitToken, mini_app_url } = body;
     if (!action) throw new Error("action é obrigatória");
 
     // VERIFY: validate token, save bot info, set webhook automatically
@@ -184,7 +185,7 @@ Deno.serve(async (req) => {
 
     // SEND
     if (action === "send") {
-      const { chat_id, text } = await req.clone().json();
+      const { chat_id, text } = body;
       if (!chat_id || !text) throw new Error("chat_id e text obrigatórios");
       const keyboard = buildMenuKeyboard(cfg.mini_app_url, cfg.vip_channel_invite_link);
       const sent = await tg(cfg.bot_token, "sendMessage", {
