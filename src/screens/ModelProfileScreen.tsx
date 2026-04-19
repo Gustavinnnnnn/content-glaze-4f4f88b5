@@ -109,7 +109,7 @@ export const ModelProfileScreen = ({ id }: { id: string }) => {
           <div className="mt-5 grid grid-cols-3 gap-2 rounded-2xl bg-card p-3 shadow-card">
             <Stat label="Fotos" value={photos.length.toString()} />
             <Stat label="Vídeos" value={videos.length.toString()} />
-            <Stat label="Mensal" value={`R$${Number(model.monthly_price).toFixed(0)}`} />
+            <Stat label="Acesso" value={`R$${vipPrice.toFixed(0)}`} />
           </div>
 
           {!subscribed ? (
@@ -118,11 +118,11 @@ export const ModelProfileScreen = ({ id }: { id: string }) => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-wider opacity-90">
-                      Plano mensal
+                      Acesso VIP · todas as modelos
                     </p>
                     <p className="text-2xl font-extrabold">
-                      R$ {Number(model.monthly_price).toFixed(2).replace(".", ",")}
-                      <span className="text-xs font-medium opacity-90">/mês</span>
+                      R$ {vipPrice.toFixed(2).replace(".", ",")}
+                      <span className="text-xs font-medium opacity-90"> · pagamento único</span>
                     </p>
                   </div>
                   <Crown className="h-8 w-8 opacity-90" />
@@ -138,10 +138,10 @@ export const ModelProfileScreen = ({ id }: { id: string }) => {
                   </div>
                 ))}
                 <button
-                  onClick={() => setConfirmOpen(true)}
+                  onClick={openUpgrade}
                   className="gradient-primary shadow-button mt-3 flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm font-bold text-primary-foreground transition-transform active:scale-[0.98]"
                 >
-                  <Sparkles className="h-4 w-4" /> Assinar {model.name.split(" ")[0]}
+                  <Sparkles className="h-4 w-4" /> Desbloquear acesso VIP
                 </button>
               </div>
             </div>
@@ -197,7 +197,7 @@ export const ModelProfileScreen = ({ id }: { id: string }) => {
                       />
                       {locked && (
                         <button
-                          onClick={() => setConfirmOpen(true)}
+                          onClick={openUpgrade}
                           className="absolute inset-0 flex items-center justify-center bg-foreground/20"
                         >
                           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-background/95 shadow-card">
@@ -247,47 +247,7 @@ export const ModelProfileScreen = ({ id }: { id: string }) => {
         </section>
       </div>
 
-      {confirmOpen && (
-        <div className="absolute inset-0 z-50 flex items-end justify-center bg-foreground/40 backdrop-blur-sm sm:items-center">
-          <div className="w-full max-w-md rounded-t-3xl bg-background p-6 shadow-floating sm:rounded-3xl">
-            <div className="mx-auto h-1.5 w-10 rounded-full bg-muted sm:hidden" />
-            <div className="mt-4 text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full gradient-primary shadow-glow">
-                <Crown className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <h3 className="mt-3 text-lg font-extrabold">Confirmar assinatura</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Você vai assinar <span className="font-bold text-foreground">{model.name}</span> por
-                <span className="font-bold text-primary">
-                  {" "}
-                  R$ {Number(model.monthly_price).toFixed(2).replace(".", ",")}/mês
-                </span>
-                .
-              </p>
-            </div>
-            <button
-              onClick={handleConfirm}
-              className="gradient-primary shadow-button mt-5 flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm font-bold text-primary-foreground"
-            >
-              {!user ? "Entrar e continuar" : "Pagar com PIX"}
-            </button>
-            <button
-              onClick={() => setConfirmOpen(false)}
-              className="mt-2 w-full py-2 text-xs font-medium text-muted-foreground"
-            >
-              Cancelar
-            </button>
-          </div>
-        </div>
-      )}
-
-      <PixCheckout
-        open={pixOpen}
-        onOpenChange={setPixOpen}
-        purchaseType="model_subscription"
-        modelId={model.id}
-        title={`Assinar ${model.name}`}
-      />
+      <UpgradeDialog open={upgradeOpen} onOpenChange={setUpgradeOpen} />
     </div>
   );
 };
