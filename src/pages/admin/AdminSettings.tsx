@@ -56,6 +56,24 @@ const AdminSettings = () => {
           <Input label="Duração VIP (dias)" type="number" value={String(form.vip_duration_days ?? "")} onChange={(v: string) => setForm({ ...form, vip_duration_days: v })} />
         </div>
 
+        <div className="rounded-2xl border border-border bg-secondary/40 p-4 space-y-3">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-bold">Taxa de acesso reembolsável</p>
+              <p className="text-[11px] text-muted-foreground">Cobrança extra após o pagamento principal. 100% reembolsável.</p>
+            </div>
+            <label className="relative inline-flex cursor-pointer items-center">
+              <input type="checkbox" className="peer sr-only"
+                checked={!!form.access_fee_enabled}
+                onChange={(e) => setForm({ ...form, access_fee_enabled: e.target.checked })} />
+              <div className="h-6 w-11 rounded-full bg-muted peer-checked:bg-primary transition-colors after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-transform peer-checked:after:translate-x-5" />
+            </label>
+          </div>
+          <Input label="Valor da taxa (R$)" type="number"
+            value={String(form.access_fee_amount ?? "24.90")}
+            onChange={(v: string) => setForm({ ...form, access_fee_amount: v })} />
+        </div>
+
         <div>
           <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-muted-foreground">Gateway de pagamento</label>
           <select value={form.payment_gateway ?? ""} onChange={(e) => setForm({ ...form, payment_gateway: e.target.value || null })}
