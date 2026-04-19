@@ -5,6 +5,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useNav } from "@/contexts/NavContext";
 import { VideoThumb } from "@/components/VideoThumb";
 import { UpgradeDialog } from "@/components/UpgradeDialog";
+import { VipHeroBanner } from "@/components/VipHeroBanner";
 import { displayViews, formatViews } from "@/lib/displayViews";
 import { cn } from "@/lib/utils";
 
@@ -45,6 +46,8 @@ export const ExploreScreen = () => {
           />
         </div>
       </header>
+
+      <VipHeroBanner headline="Desbloqueie todos os vídeos VIP" subline="Um único pagamento libera todo o acervo." />
 
       <div className="px-3 py-4">
         {query.trim() && (
