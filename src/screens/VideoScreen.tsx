@@ -7,10 +7,8 @@ import { ContentCard } from "@/components/ContentCard";
 import { VipPromoBanner } from "@/components/VipPromoBanner";
 import { useVideo, useVideos, recordView } from "@/hooks/useSiteData";
 import { displayViews, formatViews } from "@/lib/displayViews";
+import { getVideoDescription } from "@/lib/rotatingCopy";
 import { cn } from "@/lib/utils";
-
-const DEFAULT_DESCRIPTION =
-  "Veja completo no nosso VIP agora mesmo. Mais de 10.000 vídeos postados, sem propagandas, com novos conteúdos toda semana.";
 
 export const VideoScreen = ({ id }: { id: string }) => {
   const { back, openVideo } = useNav();
@@ -87,7 +85,7 @@ export const VideoScreen = ({ id }: { id: string }) => {
     );
   }
 
-  const description = item.description?.trim() || DEFAULT_DESCRIPTION;
+  const description = getVideoDescription(item.id, item.description);
 
   return (
     <div className="flex h-full flex-col bg-background">
